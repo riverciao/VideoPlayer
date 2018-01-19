@@ -144,7 +144,7 @@ class VideoPlayerTableViewController: UITableViewController {
             
             cell.selectionStyle = .none
             
-//            let rowView = cell.rowView
+//            let rowView = cell.
             
 //            rowView.imageView.image = entry.image
             
@@ -160,8 +160,8 @@ class VideoPlayerTableViewController: UITableViewController {
             
             cell.selectionStyle = .none
             
-//            let rowView = cell.rowView
-//
+//            let rowView = cell.playButton
+
 //            rowView.textField.text = entry.title
 //            rowView.textField.delegate = self
 //            rowView.textField.addTarget(self, action: .textDidChange, for: .editingChanged)
