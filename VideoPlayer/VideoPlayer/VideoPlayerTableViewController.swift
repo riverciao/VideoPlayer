@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
+import MediaPlayer
 
 class VideoPlayerTableViewController: UITableViewController {
 
@@ -142,6 +145,8 @@ class VideoPlayerTableViewController: UITableViewController {
             
             cell.selectionStyle = .none
             
+            cell.searchTextField.addTarget(self, action: #selector(playVideo), for: .editingDidEnd)
+            
             return cell
             
         case .video:
@@ -169,6 +174,20 @@ class VideoPlayerTableViewController: UITableViewController {
             return cell
         }
         
+    }
+    
+    // MARK: Feature
+    
+    @objc private func playVideo() {
+        let path = "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
+        let url = URL(string: path)
+        let player = AVPlayer(url: url!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: true)
+        {
+            playerViewController.player!.play()
+        }
     }
 
 }
