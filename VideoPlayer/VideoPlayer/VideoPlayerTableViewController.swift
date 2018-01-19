@@ -23,6 +23,10 @@ class VideoPlayerTableViewController: UITableViewController {
     
     private let components: [Component] = [ .search, .video, .action ]
     
+    private var player: AVPlayer?
+    
+    private var playerStatusContext = 0
+    
     // MARK: - View lifr cycle
     
     override func viewDidLoad() {
@@ -171,6 +175,10 @@ class VideoPlayerTableViewController: UITableViewController {
             
             cell.selectionStyle = .none
             
+            cell.playButton.addTarget(self, action: #selector(pauseOrPlay), for: .touchUpInside)
+            
+            cell.muteButton.addTarget(self, action: #selector(mute), for: .touchUpInside)
+            
             return cell
         }
         
@@ -182,19 +190,51 @@ class VideoPlayerTableViewController: UITableViewController {
         // Get video URL
         let path = "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
         let url = URL(string: path)
-        let player = AVPlayer(url: url!)
+        player = AVPlayer(url: url!)
         
         // Present the video player VC and play video
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         
+        // Setup vedio frame
         self.addChildViewController(playerViewController)
-        playerViewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-        self.view.addSubview(playerViewController.view)
-        player.play()
+        let width = UIScreen.main.bounds.width
+        let x: CGFloat = 0
+        let y = UIScreen.main.bounds.height / 2
+        playerViewController.view.frame = CGRect(x: x, y: y, width: width, height: 300)
         
-//        self.present(playerViewController, animated: true) {
-//            playerViewController.player!.play()
+        self.view.addSubview(playerViewController.view)
+        player!.play()
+        
+        player!.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: &playerStatusContext)
+
+    }
+    
+    @objc private func pauseOrPlay() {
+        
+        player?.pause()
+        
+    }
+    
+    @objc private func mute() {
+        
+        player?.isMuted = true
+        
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+    {
+        print("OOOOOO\(change)")
+        //  Check status
+//        if keyPath == "status" && context == &playerStatusContext && change != nil
+//        {
+//            let status = change![.newKey] as! Int
+////            let status = AVPlayerStatus(rawValue: change![.newKey] as! Int)!
+//            //  Status is not unknown
+//            if(status != AVPlayerStatus.unknown.rawValue)
+//            {
+//                print("KVO detect3902")
+//            }
 //        }
     }
 

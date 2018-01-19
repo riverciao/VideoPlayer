@@ -17,6 +17,7 @@
 		5F12EEA12011C10600529DEA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12EEA02011C10600529DEA /* Identifiable.swift */; };
 		5F12EEA32011C21D00529DEA /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12EEA22011C21D00529DEA /* ActionTableViewCell.swift */; };
 		5F12EEA52011CCC700529DEA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12EEA42011CCC700529DEA /* SearchTableViewCell.swift */; };
+		5F12EEA72011E2D600529DEA /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12EEA62011E2D600529DEA /* VideoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		5F12EEA02011C10600529DEA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		5F12EEA22011C21D00529DEA /* ActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
 		5F12EEA42011CCC700529DEA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		5F12EEA62011E2D600529DEA /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				5F12EEA42011CCC700529DEA /* SearchTableViewCell.swift */,
 				5F12EE9E2011C0DA00529DEA /* VideoTableViewCell.swift */,
 				5F12EEA22011C21D00529DEA /* ActionTableViewCell.swift */,
+				5F12EEA62011E2D600529DEA /* VideoManager.swift */,
 				5F12EE8D2011B5FB00529DEA /* Assets.xcassets */,
 				5F12EE8F2011B5FB00529DEA /* LaunchScreen.storyboard */,
 				5F12EE922011B5FB00529DEA /* Info.plist */,
@@ -175,6 +178,7 @@
 				5F12EE872011B5FB00529DEA /* AppDelegate.swift in Sources */,
 				5F12EEA32011C21D00529DEA /* ActionTableViewCell.swift in Sources */,
 				5F12EEA52011CCC700529DEA /* SearchTableViewCell.swift in Sources */,
+				5F12EEA72011E2D600529DEA /* VideoManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
