@@ -20,9 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window!.makeKeyAndVisible()
         
-        let videoPlayerViewController = VideoPlayerViewController()
+        let videoPlayerTableViewController = VideoPlayerTableViewController()
         
-        window?.rootViewController = videoPlayerViewController
+        window?.rootViewController = videoPlayerTableViewController
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }
