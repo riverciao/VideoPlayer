@@ -12,17 +12,23 @@ class VideoStatus: NSObject {
     
     @objc dynamic var isPlayed: Bool = false
     
-    init(isPlayed: Bool) {
-        
+    @objc dynamic var isMuted: Bool = false
+    
+    init(isPlayed: Bool, isMuted: Bool) {
+
         super.init()
         
         self.isPlayed = isPlayed
+        
+        self.isMuted = isMuted
         
     }
     
 }
 
-private var videoContext = 0
+private var playContext = 0
+
+private var muteContext = 0
 
 class VideoManager: NSObject {
     
@@ -33,14 +39,31 @@ class VideoManager: NSObject {
         
         super.init()
         
-        self.videoStatus.addObserver(self, forKeyPath: #keyPath(VideoStatus.isPlayed), options: .new, context: &videoContext)
+        self.videoStatus.addObserver(self, forKeyPath: #keyPath(VideoStatus.isPlayed), options: .new, context: &playContext)
+        
+        self.videoStatus.addObserver(self, forKeyPath: #keyPath(VideoStatus.isMuted), options: .new, context: &muteContext)
+
+    }
+    
+    deinit {
+        
+        videoStatus.removeObserver(self, forKeyPath: #keyPath(VideoStatus.isPlayed))
+        
+        videoStatus.removeObserver(self, forKeyPath: #keyPath(VideoStatus.isMuted))
+        
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if context == &videoContext {
+        if context == &playContext {
             
-            print("value have changed!!!!!!")
+            print("play condition has changed!!!!!!")
+            
+        }
+        
+        if context == &muteContext {
+            
+            print("mute condition has changed!!!!!!")
             
         }
         

@@ -14,6 +14,8 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
     
     static let height: CGFloat = 44.0
     
+    static let playTitle = "Pause"
+    
     class var identifier: String { return String(describing: self) }
     
     lazy var playButton: UIButton = {
@@ -21,9 +23,8 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
         button.frame = CGRect(origin: .zero, size: CGSize(width: 33, height: 19))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Play", for: .normal)
+        button.setTitle("Pause", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(play), for: .touchUpInside)
         return button
     }()
     
@@ -34,7 +35,7 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Mute", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(mute), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(mute), for: .touchUpInside)
         return button
     }()
     
@@ -77,11 +78,7 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
 
     // MARK: Feature
     
-    @objc private func play() {
-        print("play")
-    }
-    
-    @objc private func mute() {
-        print("mute")
-    }
+//    @objc private func mute() {
+//        print("mute")
+//    }
 }

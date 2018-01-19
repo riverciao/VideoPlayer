@@ -25,7 +25,8 @@ class VideoPlayerTableViewController: UITableViewController {
     
     private var player: AVPlayer?
     
-    private var videoStatus = VideoStatus(isPlayed: false)
+    private var videoStatus = VideoStatus(isPlayed: false, isMuted: false)
+    
     
     // MARK: - View lifr cycle
     
@@ -45,6 +46,7 @@ class VideoPlayerTableViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     
     // MARK: Set Up
     
@@ -68,6 +70,7 @@ class VideoPlayerTableViewController: UITableViewController {
             ActionTableViewCell.self,
             forCellReuseIdentifier: ActionTableViewCell.identifier
         )
+        
         
     }
     
@@ -212,34 +215,45 @@ class VideoPlayerTableViewController: UITableViewController {
     
     @objc private func pauseOrPlay() {
         
-        player?.pause()
+        let manager = VideoManager(videoStatus: videoStatus)
         
-        var manager = VideoManager(videoStatus: videoStatus)
-        
-        videoStatus.isPlayed = false
+        if videoStatus.isPlayed == true {
+            
+            player?.pause()
+
+            videoStatus.isPlayed = false
+            
+            
+        } else {
+            
+            player?.play()
+            
+            videoStatus.isPlayed = true
+            
+        }
         
     }
     
     @objc private func mute() {
         
-        player?.isMuted = true
+        let manager = VideoManager(videoStatus: videoStatus)
+        
+        if videoStatus.isMuted == false {
+            
+            player?.isMuted = true
+            
+            videoStatus.isMuted = true
+            
+            
+        } else {
+            
+            player?.isMuted = false
+            
+            videoStatus.isMuted = false
+            
+        }
         
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
-//    {
-//        print("OOOOOO\(change)")
-//        //  Check status
-////        if keyPath == "status" && context == &playerStatusContext && change != nil
-////        {
-////            let status = change![.newKey] as! Int
-//////            let status = AVPlayerStatus(rawValue: change![.newKey] as! Int)!
-////            //  Status is not unknown
-////            if(status != AVPlayerStatus.unknown.rawValue)
-////            {
-////                print("KVO detect3902")
-////            }
-////        }
-//    }
 
 }
