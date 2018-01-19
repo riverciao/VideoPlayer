@@ -25,7 +25,7 @@ class VideoPlayerTableViewController: UITableViewController {
     
     private var player: AVPlayer?
     
-    private var playerStatusContext = 0
+    private var videoStatus = VideoStatus(isPlayed: false)
     
     // MARK: - View lifr cycle
     
@@ -206,13 +206,17 @@ class VideoPlayerTableViewController: UITableViewController {
         self.view.addSubview(playerViewController.view)
         player!.play()
         
-        player!.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: &playerStatusContext)
-
+        videoStatus.isPlayed = true
+        
     }
     
     @objc private func pauseOrPlay() {
         
         player?.pause()
+        
+        var manager = VideoManager(videoStatus: videoStatus)
+        
+        videoStatus.isPlayed = false
         
     }
     
@@ -222,20 +226,20 @@ class VideoPlayerTableViewController: UITableViewController {
         
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
-    {
-        print("OOOOOO\(change)")
-        //  Check status
-//        if keyPath == "status" && context == &playerStatusContext && change != nil
-//        {
-//            let status = change![.newKey] as! Int
-////            let status = AVPlayerStatus(rawValue: change![.newKey] as! Int)!
-//            //  Status is not unknown
-//            if(status != AVPlayerStatus.unknown.rawValue)
-//            {
-//                print("KVO detect3902")
-//            }
-//        }
-    }
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+//    {
+//        print("OOOOOO\(change)")
+//        //  Check status
+////        if keyPath == "status" && context == &playerStatusContext && change != nil
+////        {
+////            let status = change![.newKey] as! Int
+//////            let status = AVPlayerStatus(rawValue: change![.newKey] as! Int)!
+////            //  Status is not unknown
+////            if(status != AVPlayerStatus.unknown.rawValue)
+////            {
+////                print("KVO detect3902")
+////            }
+////        }
+//    }
 
 }
