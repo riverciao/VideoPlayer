@@ -12,24 +12,13 @@ class VideoPlayerTableViewController: UITableViewController {
 
     enum Component {
         
-        case video, action
+        case search, video, action
         
     }
     
     // MARK: - Property
     
-    private let components: [Component] = [ .video, .action ]
-    
-    
-    
-    lazy var footer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 16
-        view.clipsToBounds = true
-        view.isHidden = false
-        return view
-    }()
+    private let components: [Component] = [ .search, .video, .action ]
     
     // MARK: - View lifr cycle
     
@@ -59,6 +48,11 @@ class VideoPlayerTableViewController: UITableViewController {
         tableView.separatorStyle = .none
 
         tableView.register(
+            SearchTableViewCell.self,
+            forCellReuseIdentifier: SearchTableViewCell.identifier
+        )
+        
+        tableView.register(
             VideoTableViewCell.self,
             forCellReuseIdentifier: VideoTableViewCell.identifier
         )
@@ -81,7 +75,7 @@ class VideoPlayerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch components[section] {
-        case .video, .action:
+        case .search, .video, .action:
             
             return 1
         }
@@ -97,6 +91,10 @@ class VideoPlayerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch components[indexPath.section] {
+        case .search:
+            
+            return SearchTableViewCell.height
+            
         case .video:
             
             let actionRowHeight = ActionTableViewCell.height
@@ -134,6 +132,18 @@ class VideoPlayerTableViewController: UITableViewController {
         let component = components[indexPath.section]
         
         switch component {
+        case .search:
+            
+            let identifier = SearchTableViewCell.identifier
+            
+            // swiftlint:disable force_cast
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SearchTableViewCell
+            // swiftlint:enable force_case
+            
+            cell.selectionStyle = .none
+            
+            return cell
+            
         case .video:
             
             let identifier = VideoTableViewCell.identifier
@@ -143,10 +153,6 @@ class VideoPlayerTableViewController: UITableViewController {
             // swiftlint:enable force_case
             
             cell.selectionStyle = .none
-            
-//            let rowView = cell.
-            
-//            rowView.imageView.image = entry.image
             
             return cell
             
@@ -159,12 +165,6 @@ class VideoPlayerTableViewController: UITableViewController {
             // swiftlint:enable force_case
             
             cell.selectionStyle = .none
-            
-//            let rowView = cell.playButton
-
-//            rowView.textField.text = entry.title
-//            rowView.textField.delegate = self
-//            rowView.textField.addTarget(self, action: .textDidChange, for: .editingChanged)
             
             return cell
         }

@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let videoPlayerTableViewController = VideoPlayerTableViewController()
         
+//        let navigationController = UINavigationController(rootViewController: videoPlayerTableViewController)
+        
         window?.rootViewController = videoPlayerTableViewController
         
         UIApplication.shared.statusBarStyle = .lightContent
