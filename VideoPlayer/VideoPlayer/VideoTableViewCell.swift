@@ -14,6 +14,8 @@ class VideoTableViewCell: UITableViewCell, Identifiable {
     
     class var identifier: String { return String(describing: self) }
     
+    static let height: CGFloat = 150.0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

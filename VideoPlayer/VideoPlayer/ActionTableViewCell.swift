@@ -12,6 +12,8 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
 
     // MARK: Property
     
+    static let height: CGFloat = 44.0
+    
     class var identifier: String { return String(describing: self) }
     
     override func awakeFromNib() {
@@ -39,7 +41,7 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
     
     private func setUp() {
         
-        self.contentView.backgroundColor = .red
+        self.contentView.backgroundColor = .orange
         
     }
 
