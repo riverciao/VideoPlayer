@@ -27,6 +27,8 @@ class VideoPlayerTableViewController: UITableViewController {
     
     private var videoStatus = VideoStatus(isPlayed: false, isMuted: false)
     
+    private var path: String = ""
+    
     
     // MARK: - View lifr cycle
     
@@ -109,6 +111,8 @@ class VideoPlayerTableViewController: UITableViewController {
             
             let actionRowHeight = ActionTableViewCell.height
             
+            let searchRowHeight = SearchTableViewCell.height
+            
             var topHeight: CGFloat = view.safeAreaInsets.top
             
             if let navigationController = navigationController {
@@ -122,6 +126,7 @@ class VideoPlayerTableViewController: UITableViewController {
             let height = view.bounds.height
                 - topHeight
                 - actionRowHeight
+                - searchRowHeight
             
             let minimumHeight = VideoTableViewCell.height
             
@@ -152,7 +157,7 @@ class VideoPlayerTableViewController: UITableViewController {
             
             cell.selectionStyle = .none
             
-            cell.searchTextField.addTarget(self, action: #selector(playVideo), for: .editingDidEnd)
+            cell.searchTextField.addTarget(self, action: #selector(playVideo(sender:)), for: .editingDidEnd)
             
             return cell
             
@@ -189,10 +194,10 @@ class VideoPlayerTableViewController: UITableViewController {
     
     // MARK: Feature
     
-    @objc private func playVideo() {
+    @objc private func playVideo(sender: UITextField) {
         // Get video URL
-        let path = "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
-        let url = URL(string: path)
+        let path = sender.text
+        let url = URL(string: path!)
         player = AVPlayer(url: url!)
         
         // Present the video player VC and play video

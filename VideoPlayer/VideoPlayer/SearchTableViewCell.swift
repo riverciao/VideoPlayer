@@ -16,12 +16,18 @@ class SearchTableViewCell: UITableViewCell, Identifiable {
     
     static let height: CGFloat = 44.0
     
+    lazy var searchBarView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+    
     lazy var searchTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter URL of video"
         textField.font = UIFont(name: "ChalkboardSE-Regular", size: 14)
-        textField.backgroundColor = UIColor.white
         textField.textColor = .black
         return textField
     }()
@@ -53,13 +59,19 @@ class SearchTableViewCell: UITableViewCell, Identifiable {
         
         self.contentView.backgroundColor = UIColor.black
         
-        contentView.addSubview(searchTextField)
+        contentView.addSubview(searchBarView)
+        
+        searchBarView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        searchBarView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        searchBarView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 16).isActive = true
+        searchBarView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        searchBarView.addSubview(searchTextField)
         
         searchTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         searchTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        searchTextField.widthAnchor.constraint(equalToConstant: contentView.frame.width - 16).isActive = true
+        searchTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 16).isActive = true
         searchTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
         
     }
 
