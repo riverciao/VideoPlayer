@@ -179,15 +179,23 @@ class VideoPlayerTableViewController: UITableViewController {
     // MARK: Feature
     
     @objc private func playVideo() {
+        // Get video URL
         let path = "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
         let url = URL(string: path)
         let player = AVPlayer(url: url!)
+        
+        // Present the video player VC and play video
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
-        self.present(playerViewController, animated: true)
-        {
-            playerViewController.player!.play()
-        }
+        
+        self.addChildViewController(playerViewController)
+        playerViewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        self.view.addSubview(playerViewController.view)
+        player.play()
+        
+//        self.present(playerViewController, animated: true) {
+//            playerViewController.player!.play()
+//        }
     }
 
 }
