@@ -41,7 +41,7 @@ class VideoTableViewCell: UITableViewCell, Identifiable {
     
     private func setUp() {
         
-        self.contentView.backgroundColor = .red
+        self.contentView.backgroundColor = UIColor.black
         
     }
 

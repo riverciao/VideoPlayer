@@ -55,7 +55,7 @@ class VideoPlayerTableViewController: UITableViewController {
     private func setUp() {
         
         tableView.keyboardDismissMode = .onDrag
-        tableView.backgroundColor = UIColor.blue
+        tableView.backgroundColor = UIColor.black
         tableView.separatorStyle = .none
 
         tableView.register(

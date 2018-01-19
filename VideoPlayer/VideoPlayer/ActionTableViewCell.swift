@@ -62,7 +62,7 @@ class ActionTableViewCell: UITableViewCell, Identifiable {
     
     private func setUp() {
         
-        self.contentView.backgroundColor = .orange
+        self.contentView.backgroundColor = UIColor.black
         
         contentView.addSubview(playButton)
         
